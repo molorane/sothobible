@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Sotho Bible</string>
+    <string name="txtSothoBible">Buk ea khale</string>
+    <string name="txtReadBible">Read Bible</string>
+    <string name="txtBalaBible">Bala Bible</string>
+    <string name="txtSearchBible">Search Scripture</string>
+    <string name="txtBatlaBible">Batla lengolo</string>
+    <string name="txtRateBible">Rate App</string>
+    <string name="txtHlahlobaBible">Hlahloba app ena</string>
+    <string name="txtSettingsBible">Settings</string>
+    <string name="txtLisettingBible">Chencha Lisetting</string>
+    <string name="txtFeedBack">Contact Us</string>
+    <string name="txtBuaLerona">Bua le rona</string>
+    <string name="txtAboutApp">About Us</string>
+    <string name="txtTsaApp">Ka app ena</string>
+    <string name="txtAbout">About Us</string>
+
+
+    <string name="ot">Testamente ea khale</string>
+    <string name="nt">Testamente e ncha</string>
+
+    <string name="saints">Hello Saints!</string>
+    <string name="rate">If this app is helpful to you, please take your time and rate it with maximum stars. Few minutes of your time!</string>
+    <string name="rate1">This will help us know that we are in a right direction to giving you a perfect user experience. Also, please feel free to report any issues as well as suggestions.</string>
+    <string name="about">This sesotho bible fondly called buka ea khale, is a translation of an english bible (KJV). It is in Southern sotho, mostly spoken in Lesotho.</string>
+    <string name="title_activity_book">Libuka</string>
+    <string name="tab_book">Buka</string>
+    <string name="tab_chapter">Khaolo</string>
+    <string name="tab_verse">Temana</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="book_fragment">Book fragment</string>
+    <string name="chapter_fragment">Chapter fragment</string>
+    <string name="verse_fragment">Verse fragment</string>
+</resources>

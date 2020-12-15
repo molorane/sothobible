@@ -3,12 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.frag.book.ChapterFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chapterView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/chapter_fragment" />
-
+        android:layout_marginBottom="10sp"
+        app:spanCount="5"
+        android:padding="2sp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        />
 </FrameLayout>

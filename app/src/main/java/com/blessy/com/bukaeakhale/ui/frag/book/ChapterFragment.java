@@ -1,14 +1,30 @@
 package com.blessy.com.bukaeakhale.ui.frag.book;
 
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
 import com.blessy.com.bukaeakhale.R;
+import com.blessy.com.bukaeakhale.ui.adapter.ChapterAdapter;
+import com.blessy.com.bukaeakhale.ui.main.BookChapterService;
+import com.blessy.com.bukaeakhale.ui.main.TestamentBookService;
+
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,8 +39,12 @@ public class ChapterFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
+    private String book;
     private String mParam2;
+    private List<Integer> chapters;
+
+    private RecyclerView chaptersView;
+    private ChapterAdapter chapterAdapter;
 
     public ChapterFragment() {
         // Required empty public constructor
@@ -34,15 +54,15 @@ public class ChapterFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
+     * @param book Parameter 1.
      * @param param2 Parameter 2.
      * @return A new instance of fragment ChapterFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ChapterFragment newInstance(String param1, String param2) {
+    public static ChapterFragment newInstance(String book, String param2) {
         ChapterFragment fragment = new ChapterFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM1, book);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
@@ -52,9 +72,28 @@ public class ChapterFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            book = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+
+        chaptersView = getActivity().findViewById(R.id.chapterView);
+        //chaptersView.setLayoutManager(new GridLayoutManager(getActivity(),5));
+
+        CompletableFuture.supplyAsync(() -> BookChapterService.getAllOldTestamentBooks(book)
+        ).thenAccept( s -> {
+            chapters = s;
+            Log.i(TAG, "Chapters " + chapters.toString());
+            chapterAdapter = new ChapterAdapter(chapters);
+            chaptersView.setAdapter(chapterAdapter);
+        });
+
     }
 
     @Override

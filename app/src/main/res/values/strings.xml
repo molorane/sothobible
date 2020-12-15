@@ -31,4 +31,5 @@
     <string name="book_fragment">Book fragment</string>
     <string name="chapter_fragment">Chapter fragment</string>
     <string name="verse_fragment">Verse fragment</string>
+    <string name="_100">100</string>
 </resources>

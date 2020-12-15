@@ -32,9 +32,9 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 fragment = BookFragment.newInstance("book",""); break;
             case 1:
-                fragment = ChapterFragment.newInstance("chapter",""); break;
+                fragment = ChapterFragment.newInstance("Lipesalema",""); break;
             case 2:
-                fragment = VerseFragment.newInstance("verse",""); break;
+                fragment = VerseFragment.newInstance("Genese","1"); break;
         }
         return fragment;
     }

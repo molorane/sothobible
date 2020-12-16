@@ -127,7 +127,6 @@ public class BookFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 bookParam = ((TextView)view).getText().toString();
-                Toast.makeText(getActivity(),bookParam ,Toast.LENGTH_SHORT).show();
                 bookActivity.changeBook(bookParam);
                 viewPager.setCurrentItem(viewPager.getCurrentItem()+1); // Increment ViewPager's position
             }

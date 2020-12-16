@@ -10,19 +10,51 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.blessy.com.bukaeakhale.ui.frag.book.SectionsPagerAdapter;
 
 public class BookActivity extends AppCompatActivity {
 
+    Switch onOffSwitch;
+    TextView title;
+    private ViewPager viewPager;
+    private SectionsPagerAdapter sectionsPagerAdapter;
+    public static String book = "Genese";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book);
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
-        ViewPager viewPager = findViewById(R.id.view_pager);
+        sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), book);
+        viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
+
+        title = (TextView) findViewById(R.id.title);
+        onOffSwitch = (Switch)  findViewById(R.id.swVerse);
+        onOffSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Toast.makeText(getApplicationContext(), "Show verse tab = "+isChecked ,Toast.LENGTH_SHORT).show();
+                //sectionsPagerAdapter.destroyItem();
+            }
+
+        });
+    }
+
+    public void changeBook(String book){
+        this.book = book;
+        sectionsPagerAdapter.book = book;
+        title.setText(book);
+    }
+
+    public void changeToLibuka(){
+        title.setText("Libuka");
     }
 }

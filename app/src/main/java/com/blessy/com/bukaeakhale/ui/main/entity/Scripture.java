@@ -38,4 +38,12 @@ public class Scripture implements Serializable {
     @NonNull
     public String scripture;
 
+
+    public Scripture(){}
+
+    public Scripture(String book, int chapter, int verse) {
+        this.book = book;
+        this.chapter = chapter;
+        this.verse = verse;
+    }
 }

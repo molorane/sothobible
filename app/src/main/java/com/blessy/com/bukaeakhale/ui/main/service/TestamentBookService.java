@@ -1,4 +1,4 @@
-package com.blessy.com.bukaeakhale.ui.main;
+package com.blessy.com.bukaeakhale.ui.main.service;
 
 import com.blessy.com.bukaeakhale.MainActivity;
 

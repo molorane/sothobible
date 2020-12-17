@@ -1,6 +1,5 @@
 package com.blessy.com.bukaeakhale.ui.frag.book;
 
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -20,14 +19,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blessy.com.bukaeakhale.BookActivity;
-import com.blessy.com.bukaeakhale.MainActivity;
 import com.blessy.com.bukaeakhale.R;
-import com.blessy.com.bukaeakhale.ui.main.TestamentBookService;
+import com.blessy.com.bukaeakhale.ui.main.service.TestamentBookService;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
-import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 import static android.content.ContentValues.TAG;

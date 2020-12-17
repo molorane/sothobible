@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 
 import com.blessy.com.bukaeakhale.R;
 import com.blessy.com.bukaeakhale.ui.adapter.ChapterAdapter;
-import com.blessy.com.bukaeakhale.ui.main.service.BookChapterService;
+import com.blessy.com.bukaeakhale.ui.main.service.ScriptureService;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -82,7 +82,7 @@ public class ChapterFragment extends Fragment {
         chaptersView = getActivity().findViewById(R.id.chapterView);
         //chaptersView.setLayoutManager(new GridLayoutManager(getActivity(),5));
 
-        CompletableFuture.supplyAsync(() -> BookChapterService.getAllOldTestamentBooks(book)
+        CompletableFuture.supplyAsync(() -> ScriptureService.getChaptersByBook(book)
         ).thenAccept( s -> {
             chapters = s;
             Log.i(TAG, "Chapters " + chapters.toString());

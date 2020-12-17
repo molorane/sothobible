@@ -3,25 +3,26 @@ package com.blessy.com.bukaeakhale.ui.main.entity;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
-@Entity(tableName="books")
+@Entity(tableName="scripture", foreignKeys = {
+        @ForeignKey(
+                entity = Book.class,
+                parentColumns = "id",
+                childColumns = "book_id"
+        )})
 public class Scripture implements Serializable {
 
     @PrimaryKey
     @ColumnInfo(name = "id")
     @NonNull
-    public Integer id;
+    public int id;
 
-    @ColumnInfo(name = "testament")
-    @NonNull
-    public String testament;
-
-    @ColumnInfo(name = "book")
-    @NonNull
-    public String book;
+    @ColumnInfo(name = "book_id",index = true)
+    public int bookId;
 
     @ColumnInfo(name = "chapter")
     @NonNull
@@ -41,9 +42,4 @@ public class Scripture implements Serializable {
 
     public Scripture(){}
 
-    public Scripture(String book, int chapter, int verse) {
-        this.book = book;
-        this.chapter = chapter;
-        this.verse = verse;
-    }
 }

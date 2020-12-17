@@ -1,15 +1,20 @@
 package com.blessy.com.bukaeakhale.ui.main;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.blessy.com.bukaeakhale.ui.main.entity.Book;
 import com.blessy.com.bukaeakhale.ui.main.entity.Scripture;
+import com.blessy.com.bukaeakhale.ui.main.repository.BookRepository;
 import com.blessy.com.bukaeakhale.ui.main.repository.ScriptureRepository;
 
-@Database(entities = {Scripture.class}, version = 1, exportSchema = false)
+import static android.content.ContentValues.TAG;
+
+@Database(entities = {Scripture.class, Book.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase  extends RoomDatabase {
 
 
@@ -29,6 +34,8 @@ public abstract class AppDatabase  extends RoomDatabase {
         }
         return instance;
     }
+
+    public abstract BookRepository bookRepository();
 
     public abstract ScriptureRepository scriptureRepository();
 }

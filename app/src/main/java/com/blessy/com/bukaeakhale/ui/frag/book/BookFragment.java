@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 import com.blessy.com.bukaeakhale.BookActivity;
 import com.blessy.com.bukaeakhale.R;
-import com.blessy.com.bukaeakhale.ui.main.service.TestamentBookService;
+import com.blessy.com.bukaeakhale.ui.main.service.BookService;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -50,6 +50,7 @@ public class BookFragment extends Fragment {
     private String mParam2;
     private static List<String> otBooks;
     private static List<String> ntBooks;
+
     private BookActivity bookActivity;
 
     private ViewPager viewPager;
@@ -100,7 +101,7 @@ public class BookFragment extends Fragment {
         lvOT = getActivity().findViewById(R.id.lvOT);
         lvNT = getActivity().findViewById(R.id.lvNT);
 
-        CompletableFuture.supplyAsync(() -> TestamentBookService.getAllOldTestamentBooks()
+        CompletableFuture.supplyAsync(() -> BookService.getAllOldTestamentBooks()
         ).thenAccept( s -> {
             otBooks = s;
             Log.i(TAG, "Bible OT books " + otBooks.toString());
@@ -109,7 +110,7 @@ public class BookFragment extends Fragment {
         });
 
 
-        CompletableFuture.supplyAsync(() -> TestamentBookService.getAllNewTestamentBooks()
+        CompletableFuture.supplyAsync(() -> BookService.getAllNewTestamentBooks()
         ).thenAccept( s -> {
             ntBooks = s;
             ntAdapter = new ArrayAdapter<>(getActivity(), R.layout.list_item, ntBooks.toArray(new String[]{}));

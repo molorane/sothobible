@@ -34,7 +34,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         this.book = book;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public Fragment getItem(int position) {
         Fragment fragment = null;

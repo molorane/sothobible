@@ -9,31 +9,44 @@ import java.util.List;
 @Dao
 public interface ScriptureRepository {
 
-    @Query("SELECT * FROM books WHERE id IN (:id)")
+    @Query("SELECT * FROM scripture WHERE id IN (:id)")
     List<Scripture> loadAllByIds(int id);
 
-    @Query("SELECT DISTINCT book FROM books")
-    List<String> findAllBooks();
+    @Query("SELECT DISTINCT chapter FROM scripture s " +
+            "INNER JOIN book b ON s.book_id = b.id " +
+            "WHERE b.book = :book")
+    List<Integer> findChaptersByBook(String book);
 
-    @Query("SELECT DISTINCT book FROM books WHERE testament = 'OT'")
-    List<String> findAllOldTestamentBooks();
+    @Query("SELECT DISTINCT s.verse FROM scripture s " +
+            "INNER JOIN book b ON s.book_id = b.id " +
+            "WHERE b.book = :book AND s.chapter = :chapter")
+    List<Integer> findAllChapterVersesByBookAndChapter(String book, int chapter);
 
-    @Query("SELECT DISTINCT book FROM books WHERE testament = 'NT'")
-    List<String> findAllNewTestamentBooks();
+    @Query("SELECT DISTINCT verse FROM scripture " +
+            "WHERE book_id = :book_id AND chapter = :chapter")
+    List<Integer> findAllChapterVersesByBookIdAndChapter(int book_id, int chapter);
 
-    @Query("SELECT DISTINCT chapter FROM books WHERE book = :book")
-    List<Integer> findAllBookChapters(String book);
+    @Query("SELECT * FROM scripture s " +
+            "INNER JOIN book b ON s.book_id = b.id " +
+            "WHERE b.book = :book AND s.chapter = :chapter")
+    List<Scripture> readScriptureByBookAndChapter(String book, int chapter);
 
-    @Query("SELECT verse FROM books WHERE book = :book AND chapter = :chapter")
-    List<Integer> findAllChapterVerses(String book, int chapter);
+    @Query("SELECT * FROM scripture " +
+            "WHERE book_id = :book_id AND chapter = :chapter")
+    List<Scripture> readScriptureByBookIdAndChapter(int book_id, int chapter);
 
-    @Query("SELECT * FROM books WHERE book = :book AND chapter = :chapter")
-    List<Scripture> readChapter(String book, int chapter);
 
-    @Query("SELECT scripture FROM books WHERE book = :book AND chapter = :chapter")
-    List<String> readChapterVerses(String book, int chapter);
+    @Query("SELECT s.scripture FROM scripture s " +
+            "INNER JOIN book b ON s.book_id = b.id " +
+            "WHERE b.book = :book AND s.chapter = :chapter")
+    List<String> readVersesByBookAndChapter(String book, int chapter);
 
-    @Query("SELECT verse FROM books WHERE book LIKE :search")
+    @Query("SELECT scripture FROM scripture " +
+            "WHERE book_id = :book_id AND chapter = :chapter")
+    List<String> readVersesByBookIdAndChapter(int book_id, int chapter);
+
+
+    @Query("SELECT verse FROM scripture WHERE scripture LIKE :search")
     List<Integer> searchScripture(String search);
 
 }

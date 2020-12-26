@@ -14,11 +14,11 @@ import com.blessy.com.bukaeakhale.ui.main.repository.ScriptureRepository;
 
 import static android.content.ContentValues.TAG;
 
-@Database(entities = {Scripture.class, Book.class}, version = 1, exportSchema = false)
+@Database(entities = {Scripture.class, Book.class}, version = 2, exportSchema = false)
 public abstract class AppDatabase  extends RoomDatabase {
 
 
-    private static final String DATABASE_NAME = "bible_data";
+    private static final String DATABASE_NAME = "bible";
     private static volatile AppDatabase instance;
 
     public static AppDatabase getInstance(Context context){

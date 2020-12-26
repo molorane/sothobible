@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnAboutBible.setOnClickListener(this);
 
         appDatabase = AppDatabase.getInstance(getApplicationContext());
-        Log.i(TAG, "Database - Bible Instance " + appDatabase.bookRepository().findAllOldTestamentBooks());
+        Log.i(TAG, "Database - Bible Instance " + appDatabase.bookRepository());
         CompletableFuture.supplyAsync(() -> {
             Log.i(TAG, "Fetching OT books " + appDatabase);
             return appDatabase.bookRepository().findAllOldTestamentBooks();

@@ -22,6 +22,7 @@ public class Scripture implements Serializable {
     public int id;
 
     @ColumnInfo(name = "book_id",index = true)
+    @NonNull
     public int bookId;
 
     @ColumnInfo(name = "chapter")

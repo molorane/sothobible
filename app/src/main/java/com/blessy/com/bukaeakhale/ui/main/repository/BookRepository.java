@@ -8,10 +8,6 @@ import java.util.List;
 @Dao
 public interface BookRepository {
 
-
-    @Query("SELECT book FROM book")
-    List<String> findAllBooks();
-
     @Query("SELECT book FROM book WHERE testament = 'OT'")
     List<String> findAllOldTestamentBooks();
 

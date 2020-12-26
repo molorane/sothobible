@@ -14,7 +14,7 @@ import com.blessy.com.bukaeakhale.ui.main.repository.ScriptureRepository;
 
 import static android.content.ContentValues.TAG;
 
-@Database(entities = {Scripture.class, Book.class}, version = 2, exportSchema = false)
+@Database(entities = {Scripture.class, Book.class}, version = 3, exportSchema = false)
 public abstract class AppDatabase  extends RoomDatabase {
 
 

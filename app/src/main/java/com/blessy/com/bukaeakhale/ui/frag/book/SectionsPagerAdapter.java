@@ -19,6 +19,8 @@ import com.blessy.com.bukaeakhale.R;
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
+
+@RequiresApi(api = Build.VERSION_CODES.N)
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
@@ -26,6 +28,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     private final Context mContext;
     private FragmentManager fragmentManager;
     public String book;
+    public Fragment fragment;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm, String book) {
         super(fm);
@@ -36,7 +39,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        Fragment fragment = null;
+        fragment = null;
         switch (position){
             case 0:
                 ((BookActivity)(mContext)).changeToLibuka();

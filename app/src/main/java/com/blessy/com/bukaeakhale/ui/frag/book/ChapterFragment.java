@@ -13,12 +13,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.blessy.com.bukaeakhale.BookActivity;
 import com.blessy.com.bukaeakhale.R;
 import com.blessy.com.bukaeakhale.ui.adapter.ChapterAdapter;
+import com.blessy.com.bukaeakhale.ui.frag.book.communicator.Communicator;
 import com.blessy.com.bukaeakhale.ui.main.service.ScriptureService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static android.content.ContentValues.TAG;
 
@@ -27,6 +32,7 @@ import static android.content.ContentValues.TAG;
  * Use the {@link ChapterFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+@RequiresApi(api = Build.VERSION_CODES.N)
 public class ChapterFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -38,9 +44,10 @@ public class ChapterFragment extends Fragment {
     private String book;
     private String mParam2;
     private List<Integer> chapters;
+    private Communicator communicator;
 
-    private RecyclerView chaptersView;
-    private ChapterAdapter chapterAdapter;
+    private RecyclerView chaptersRecyclerView;
+    private ChapterAdapter chaptersAdapter;
 
     public ChapterFragment() {
         // Required empty public constructor
@@ -78,18 +85,22 @@ public class ChapterFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        communicator = (BookActivity) getActivity();
 
-        chaptersView = getActivity().findViewById(R.id.chapterView);
+        chaptersRecyclerView = getActivity().findViewById(R.id.chaptersRecyclerView);
         //chaptersView.setLayoutManager(new GridLayoutManager(getActivity(),5));
 
-        CompletableFuture.supplyAsync(() -> ScriptureService.getChaptersByBook(book)
+        CompletableFuture.supplyAsync(() -> ScriptureService.countBookChapters(book)
         ).thenAccept( s -> {
-            chapters = s;
-            Log.i(TAG, "Chapters " + chapters.toString());
-            chapterAdapter = new ChapterAdapter(chapters);
-            chaptersView.setAdapter(chapterAdapter);
+            chapters = generateList(s);
+            Log.i(TAG, "Chapters " + chapters);
+            chaptersAdapter = new ChapterAdapter(chapters);
+            chaptersRecyclerView.setAdapter(chaptersAdapter);
         });
+    }
 
+    public List<Integer> generateList(int chapters){
+        return IntStream.rangeClosed(1, chapters).mapToObj(Integer::valueOf).collect(Collectors.toList());
     }
 
     @Override
@@ -97,5 +108,15 @@ public class ChapterFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_chapter, container, false);
+    }
+
+
+    public void setNewChapters(String book){
+        CompletableFuture.supplyAsync(() -> ScriptureService.countBookChapters(book)
+        ).thenAccept( s -> {
+            chapters = generateList(s);
+            Log.i(TAG, "Chapters " + chapters);
+            chaptersAdapter.notifyDataSetChanged();
+        });
     }
 }

@@ -6,15 +6,14 @@ import java.util.List;
 
 public class ScriptureService {
 
-    private static List<Integer> chapters;
+    private static int chapters;
 
     private ScriptureService(){}
 
-    public static List<Integer> getChaptersByBook(String book){
-        if(chapters == null){
-            chapters = MainActivity.appDatabase.scriptureRepository().findChaptersByBook(book);
+    public static int countBookChapters(String book){
+        if(chapters == 0){
+            chapters = MainActivity.appDatabase.scriptureRepository().countBookChapters(book);
         }
         return chapters;
     }
-
 }

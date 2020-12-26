@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.blessy.com.bukaeakhale.BookActivity;
 import com.blessy.com.bukaeakhale.R;
+import com.blessy.com.bukaeakhale.ui.frag.book.communicator.Communicator;
 import com.blessy.com.bukaeakhale.ui.main.service.BookService;
 
 import java.util.List;
@@ -43,6 +44,7 @@ public class BookFragment extends Fragment {
     private ListView lvOT, lvNT;
     private ArrayAdapter<String> otAdapter, ntAdapter;
     private TextView title;
+    private Communicator communicator;
 
     // TODO: Rename and change types of parameters
     private String bookParam;
@@ -96,6 +98,7 @@ public class BookFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         bookActivity = (BookActivity) getActivity();
+        communicator = bookActivity;
         viewPager = (ViewPager) getActivity().findViewById(R.id.view_pager);
 
         lvOT = getActivity().findViewById(R.id.lvOT);
@@ -123,8 +126,9 @@ public class BookFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 bookParam = ((TextView)view).getText().toString();
-                bookActivity.changeBook(bookParam);
+                communicator.updateBook(bookParam);
                 viewPager.setCurrentItem(viewPager.getCurrentItem()+1); // Increment ViewPager's position
+                communicator.updateChapters(bookParam);
             }
         });
 
@@ -132,11 +136,11 @@ public class BookFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 bookParam = ((TextView)view).getText().toString();
-                bookActivity.changeBook(bookParam);
+                communicator.updateBook(bookParam);
                 viewPager.setCurrentItem(viewPager.getCurrentItem()+1); // Increment ViewPager's position
+                communicator.updateChapters(bookParam);
             }
         });
-
 
     }
 

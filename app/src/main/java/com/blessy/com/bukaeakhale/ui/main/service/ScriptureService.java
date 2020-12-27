@@ -10,10 +10,4 @@ public class ScriptureService {
 
     private ScriptureService(){}
 
-    public static int countBookChapters(String book){
-        if(chapters == 0){
-            chapters = MainActivity.appDatabase.scriptureRepository().countBookChapters(book);
-        }
-        return chapters;
-    }
 }

@@ -17,4 +17,7 @@ public class Book {
 
     @NonNull
     public String book;
+
+    @NonNull
+    public int chapters;
 }

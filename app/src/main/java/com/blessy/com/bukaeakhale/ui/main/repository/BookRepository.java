@@ -14,4 +14,9 @@ public interface BookRepository {
     @Query("SELECT book FROM book WHERE testament = 'NT'")
     List<String> findAllNewTestamentBooks();
 
+
+    @Query("SELECT chapters FROM book b " +
+            "WHERE b.book = :book")
+    int getBookChapters(String book);
+
 }

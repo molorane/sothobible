@@ -41,8 +41,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter implements IAdapt
         fragmentManager = fm;
         this.book = book;
         fragments = new ArrayList<>();
-        fragments.add(BookFragment.newInstance(book,""));
-        fragments.add(ChapterFragment.newInstance(book,""));
+        fragments.add(BookFragment.newInstance(book,"", this));
+        fragments.add(ChapterFragment.newInstance(book,"", this));
         fragments.add(VerseFragment.newInstance(book,""));
     }
 

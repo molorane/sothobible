@@ -12,16 +12,6 @@ public interface ScriptureRepository {
     @Query("SELECT * FROM scripture WHERE id IN (:id)")
     List<Scripture> loadAllByIds(int id);
 
-    @Query("SELECT COUNT(DISTINCT chapter) FROM scripture s " +
-            "INNER JOIN book b ON s.book_id = b.id " +
-            "WHERE b.book = :book")
-    int countBookChapters(String book);
-
-    @Query("SELECT DISTINCT chapter FROM scripture s " +
-            "INNER JOIN book b ON s.book_id = b.id " +
-            "WHERE b.book = :book")
-    List<Integer> findChaptersByBook(String book);
-
     @Query("SELECT DISTINCT s.verse FROM scripture s " +
             "INNER JOIN book b ON s.book_id = b.id " +
             "WHERE b.book = :book AND s.chapter = :chapter")

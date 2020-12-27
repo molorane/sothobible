@@ -12,11 +12,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.blessy.com.bukaeakhale.BookActivity;
 import com.blessy.com.bukaeakhale.R;
 import com.blessy.com.bukaeakhale.ui.adapter.ChapterAdapter;
 import com.blessy.com.bukaeakhale.ui.frag.book.communicator.Communicator;
+import com.blessy.com.bukaeakhale.ui.frag.book.communicator.IAdapter;
+import com.blessy.com.bukaeakhale.ui.main.service.BookService;
 import com.blessy.com.bukaeakhale.ui.main.service.ScriptureService;
 
 import java.util.ArrayList;
@@ -48,9 +51,15 @@ public class ChapterFragment extends Fragment implements Communicator {
 
     private RecyclerView chaptersRecyclerView;
     private ChapterAdapter chaptersAdapter;
+    private IAdapter iAdapter;
 
     public ChapterFragment() {
         // Required empty public constructor
+    }
+
+    public ChapterFragment(String book, IAdapter iAdapter) {
+        this.book = book;
+        this.iAdapter = iAdapter;
     }
 
     /**
@@ -62,8 +71,8 @@ public class ChapterFragment extends Fragment implements Communicator {
      * @return A new instance of fragment ChapterFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ChapterFragment newInstance(String book, String param2) {
-        ChapterFragment fragment = new ChapterFragment();
+    public static ChapterFragment newInstance(String book, String param2, IAdapter iAdapter) {
+        ChapterFragment fragment = new ChapterFragment(book, iAdapter);
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, book);
         args.putString(ARG_PARAM2, param2);
@@ -88,13 +97,15 @@ public class ChapterFragment extends Fragment implements Communicator {
         chaptersRecyclerView = getActivity().findViewById(R.id.chaptersRecyclerView);
         //chaptersView.setLayoutManager(new GridLayoutManager(getActivity(),5));
 
-        CompletableFuture.supplyAsync(() -> ScriptureService.countBookChapters(book)
+        CompletableFuture.supplyAsync(() -> BookService.countBookChapters(book)
         ).thenAccept( s -> {
             chapters = generateList(s);
             Log.i(TAG, "Chapters " + chapters);
             chaptersAdapter = new ChapterAdapter(chapters);
             chaptersRecyclerView.setAdapter(chaptersAdapter);
         });
+
+        Log.i(TAG, "Chapter fragment created..");
     }
 
     public List<Integer> generateList(int chapters){
@@ -110,21 +121,19 @@ public class ChapterFragment extends Fragment implements Communicator {
 
 
     public void setNewChapters(String book){
-        CompletableFuture.supplyAsync(() -> ScriptureService.countBookChapters(book)
+        Toast.makeText(getContext(), "New book new chapters "+book, Toast.LENGTH_LONG).show();
+        chapters.clear();
+        CompletableFuture.supplyAsync(() -> BookService.countBookChapters(book)
         ).thenAccept( s -> {
             chapters = generateList(s);
             Log.i(TAG, "Chapters " + chapters);
+            Toast.makeText(getContext(), "New book selected, new chapters "+chapters.size(), Toast.LENGTH_LONG).show();
             chaptersAdapter.notifyDataSetChanged();
         });
     }
 
     @Override
-    public void updateBook(String book) {
-
-    }
-
-    @Override
     public void onReceive(Object o) {
-
+        setNewChapters((String)o);
     }
 }

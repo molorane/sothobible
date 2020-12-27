@@ -66,11 +66,6 @@ public class VerseFragment extends Fragment implements Communicator {
     }
 
     @Override
-    public void updateBook(String book) {
-
-    }
-
-    @Override
     public void onReceive(Object o) {
 
     }

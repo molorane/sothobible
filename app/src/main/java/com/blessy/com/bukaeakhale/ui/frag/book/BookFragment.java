@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.blessy.com.bukaeakhale.BookActivity;
 import com.blessy.com.bukaeakhale.R;
 import com.blessy.com.bukaeakhale.ui.frag.book.communicator.Communicator;
+import com.blessy.com.bukaeakhale.ui.frag.book.communicator.IAdapter;
 import com.blessy.com.bukaeakhale.ui.main.service.BookService;
 
 import java.util.List;
@@ -56,14 +57,16 @@ public class BookFragment extends Fragment implements Communicator {
     private BookActivity bookActivity;
 
     private ViewPager viewPager;
+    private IAdapter iAdapter;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public BookFragment() {
         // Required empty public constructor
     }
 
-    public BookFragment(String book) {
+    public BookFragment(String book, IAdapter iAdapter) {
         bookParam = book;
+        this.iAdapter = iAdapter;
     }
 
     /**
@@ -76,8 +79,8 @@ public class BookFragment extends Fragment implements Communicator {
      */
     // TODO: Rename and change types and number of parameters
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static BookFragment newInstance(String book, String param2) {
-        BookFragment fragment = new BookFragment(book);
+    public static BookFragment newInstance(String book, String param2, IAdapter iAdapter) {
+        BookFragment fragment = new BookFragment(book, iAdapter);
         Bundle args = new Bundle();
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
@@ -121,53 +124,26 @@ public class BookFragment extends Fragment implements Communicator {
         });
 
 
-        lvOT.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                bookParam = ((TextView)view).getText().toString();
-                communicator.updateBook(bookParam);
-                viewPager.setCurrentItem(viewPager.getCurrentItem()+1); // Increment ViewPager's position
-            }
+        lvOT.setOnItemClickListener((parent, view, position, id) -> {
+            bookParam = ((TextView)view).getText().toString();
+            bookActivity.updateBook(bookParam);
+            iAdapter.onSend(bookParam, BookFragment.this);
+            viewPager.setCurrentItem(viewPager.getCurrentItem()+1); // Increment ViewPager's position
         });
 
-        lvNT.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                bookParam = ((TextView)view).getText().toString();
-                communicator.updateBook(bookParam);
-                viewPager.setCurrentItem(viewPager.getCurrentItem()+1); // Increment ViewPager's position
-            }
+        lvNT.setOnItemClickListener((parent, view, position, id) -> {
+            bookParam = ((TextView)view).getText().toString();
+            bookActivity.updateBook(bookParam);
+            iAdapter.onSend(bookParam, BookFragment.this);
+            viewPager.setCurrentItem(viewPager.getCurrentItem()+1); // Increment ViewPager's position
         });
 
     }
-
-
-
-    public void onItemClick(AdapterView<?> adv, View v, int arg2, long arg3) {
-        // TODO Auto-generated method stub
-
-        switch(adv.getId()) {
-            case R.id.lvOT:
-                Toast.makeText(getContext(), "list1", Toast.LENGTH_LONG).show();
-                break;
-            case R.id.lvNT:
-                Toast.makeText(getContext(), "list2", Toast.LENGTH_LONG).show();
-                break;
-        }
-
-    }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_book, container, false);
-    }
-
-    @Override
-    public void updateBook(String book) {
-
     }
 
     @Override

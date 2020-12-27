@@ -9,13 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.blessy.com.bukaeakhale.R;
+import com.blessy.com.bukaeakhale.ui.frag.book.communicator.Communicator;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link VerseFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class VerseFragment extends Fragment {
+public class VerseFragment extends Fragment implements Communicator {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,5 +63,15 @@ public class VerseFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_verse, container, false);
+    }
+
+    @Override
+    public void updateBook(String book) {
+
+    }
+
+    @Override
+    public void onReceive(Object o) {
+
     }
 }

@@ -33,7 +33,7 @@ import static android.content.ContentValues.TAG;
  * create an instance of this fragment.
  */
 @RequiresApi(api = Build.VERSION_CODES.N)
-public class ChapterFragment extends Fragment {
+public class ChapterFragment extends Fragment implements Communicator {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -85,8 +85,6 @@ public class ChapterFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        communicator = (BookActivity) getActivity();
-
         chaptersRecyclerView = getActivity().findViewById(R.id.chaptersRecyclerView);
         //chaptersView.setLayoutManager(new GridLayoutManager(getActivity(),5));
 
@@ -118,5 +116,15 @@ public class ChapterFragment extends Fragment {
             Log.i(TAG, "Chapters " + chapters);
             chaptersAdapter.notifyDataSetChanged();
         });
+    }
+
+    @Override
+    public void updateBook(String book) {
+
+    }
+
+    @Override
+    public void onReceive(Object o) {
+
     }
 }

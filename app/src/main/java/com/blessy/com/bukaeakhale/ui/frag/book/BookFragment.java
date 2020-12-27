@@ -33,7 +33,7 @@ import static android.content.ContentValues.TAG;
  * Use the {@link BookFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BookFragment extends Fragment {
+public class BookFragment extends Fragment implements Communicator {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -98,7 +98,6 @@ public class BookFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         bookActivity = (BookActivity) getActivity();
-        communicator = bookActivity;
         viewPager = (ViewPager) getActivity().findViewById(R.id.view_pager);
 
         lvOT = getActivity().findViewById(R.id.lvOT);
@@ -128,7 +127,6 @@ public class BookFragment extends Fragment {
                 bookParam = ((TextView)view).getText().toString();
                 communicator.updateBook(bookParam);
                 viewPager.setCurrentItem(viewPager.getCurrentItem()+1); // Increment ViewPager's position
-                communicator.updateChapters(bookParam);
             }
         });
 
@@ -138,7 +136,6 @@ public class BookFragment extends Fragment {
                 bookParam = ((TextView)view).getText().toString();
                 communicator.updateBook(bookParam);
                 viewPager.setCurrentItem(viewPager.getCurrentItem()+1); // Increment ViewPager's position
-                communicator.updateChapters(bookParam);
             }
         });
 
@@ -165,6 +162,16 @@ public class BookFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_book2, container, false);
+        return inflater.inflate(R.layout.fragment_book, container, false);
+    }
+
+    @Override
+    public void updateBook(String book) {
+
+    }
+
+    @Override
+    public void onReceive(Object o) {
+
     }
 }

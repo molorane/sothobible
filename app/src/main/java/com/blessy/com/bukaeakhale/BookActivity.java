@@ -29,7 +29,7 @@ import java.util.stream.IntStream;
 
 
 @RequiresApi(api = Build.VERSION_CODES.N)
-public class BookActivity extends AppCompatActivity implements Communicator {
+public class BookActivity extends AppCompatActivity {
 
     Switch onOffSwitch;
     TextView title;
@@ -60,7 +60,6 @@ public class BookActivity extends AppCompatActivity implements Communicator {
         });
     }
 
-    @Override
     public void updateBook(String book) {
         this.book = book;
         sectionsPagerAdapter.book = book;
@@ -71,19 +70,5 @@ public class BookActivity extends AppCompatActivity implements Communicator {
         title.setText("Libuka");
     }
 
-    @Override
-    public void updateChapters(String book){
-        FragmentManager fm = getSupportFragmentManager();
-        ChapterFragment chapterFragment = (ChapterFragment) fm.findFragmentByTag("fragment_chapter");
-        if(chapterFragment == null)
-            Toast.makeText(getApplicationContext(), "Chapter fragment null " ,Toast.LENGTH_SHORT).show();
-        else
-            chapterFragment.setNewChapters(book);
-    }
 
-    @Override
-    public void updateVerses(int capter) {
-        FragmentManager fm = getSupportFragmentManager();
-        VerseFragment verseFragment = (VerseFragment) fm.findFragmentByTag("fragment_verse");
-    }
 }

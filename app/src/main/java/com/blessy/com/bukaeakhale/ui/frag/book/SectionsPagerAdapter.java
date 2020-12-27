@@ -14,6 +14,11 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.blessy.com.bukaeakhale.BookActivity;
 import com.blessy.com.bukaeakhale.R;
+import com.blessy.com.bukaeakhale.ui.frag.book.communicator.Communicator;
+import com.blessy.com.bukaeakhale.ui.frag.book.communicator.IAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -21,35 +26,32 @@ import com.blessy.com.bukaeakhale.R;
  */
 
 @RequiresApi(api = Build.VERSION_CODES.N)
-public class SectionsPagerAdapter extends FragmentPagerAdapter {
+public class SectionsPagerAdapter extends FragmentPagerAdapter implements IAdapter {
 
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.tab_book, R.string.tab_chapter, R.string.tab_verse};
     private final Context mContext;
     private FragmentManager fragmentManager;
     public String book;
-    public Fragment fragment;
+    private List<Communicator> fragments;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm, String book) {
         super(fm);
         mContext = context;
         fragmentManager = fm;
         this.book = book;
+        fragments = new ArrayList<>();
+        fragments.add(BookFragment.newInstance(book,""));
+        fragments.add(ChapterFragment.newInstance(book,""));
+        fragments.add(VerseFragment.newInstance(book,""));
     }
 
     @Override
     public Fragment getItem(int position) {
-        fragment = null;
-        switch (position){
-            case 0:
-                ((BookActivity)(mContext)).changeToLibuka();
-                fragment = BookFragment.newInstance(book,""); break;
-            case 1:
-                fragment = ChapterFragment.newInstance(book,""); break;
-            case 2:
-                fragment = VerseFragment.newInstance(book,"1"); break;
+        if(position == 0){
+            ((BookActivity)(mContext)).changeToLibuka();
         }
-        return fragment;
+        return (Fragment) fragments.get(position);
     }
 
     @Nullable
@@ -67,5 +69,15 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         fragmentManager.beginTransaction().remove((Fragment) object).commitNowAllowingStateLoss();
+    }
+
+    @Override
+    public void onSend(Object o, Fragment fragment) {
+
+        for(Communicator c: fragments){
+            if(fragment.equals(fragment)){
+                c.onReceive(o);
+            }
+        }
     }
 }

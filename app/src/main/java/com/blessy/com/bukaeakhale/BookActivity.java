@@ -70,4 +70,8 @@ public class BookActivity extends AppCompatActivity {
     }
 
 
+
+    public boolean showVerse(){
+        return onOffSwitch.isChecked();
+    }
 }

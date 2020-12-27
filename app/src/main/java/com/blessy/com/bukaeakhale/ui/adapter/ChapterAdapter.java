@@ -58,7 +58,7 @@ public class ChapterAdapter  extends RecyclerView.Adapter<ChapterAdapter.Chapter
 
         @Override
         public void onClick(View v) {
-            onChapterListener.onChapterClicked(getAdapterPosition());
+            onChapterListener.onChapterClicked(getAdapterPosition()+1);
         }
     }
 

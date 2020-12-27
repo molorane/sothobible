@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.blessy.com.bukaeakhale.BookActivity;
 import com.blessy.com.bukaeakhale.R;
 import com.blessy.com.bukaeakhale.ui.adapter.ChapterAdapter;
 import com.blessy.com.bukaeakhale.ui.frag.book.communicator.Communicator;
@@ -45,11 +46,12 @@ public class ChapterFragment extends Fragment implements Communicator, ChapterAd
     private String book;
     private String mParam2;
     private List<Integer> chapters;
-    private Communicator communicator;
 
     private RecyclerView chaptersRecyclerView;
     private ChapterAdapter chaptersAdapter;
     private IAdapter iAdapter;
+
+    private BookActivity bookActivity;
 
     public ChapterFragment() {
         // Required empty public constructor
@@ -92,6 +94,7 @@ public class ChapterFragment extends Fragment implements Communicator, ChapterAd
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        bookActivity = (BookActivity) getActivity();
         chaptersRecyclerView = getActivity().findViewById(R.id.chaptersRecyclerView);
 
         CompletableFuture.supplyAsync(() -> BookService.getBookChapters(book)
@@ -137,6 +140,7 @@ public class ChapterFragment extends Fragment implements Communicator, ChapterAd
 
     @Override
     public void onChapterClicked(int position) {
-        Toast.makeText(getActivity(), "chapter clicked "+position ,Toast.LENGTH_SHORT).show();
+        if(bookActivity.showVerse())
+            Toast.makeText(getActivity(), "chapter clicked "+position ,Toast.LENGTH_SHORT).show();
     }
 }

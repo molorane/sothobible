@@ -15,17 +15,19 @@ import java.util.List;
 
 public class ChapterAdapter  extends RecyclerView.Adapter<ChapterAdapter.ChapterHolder> {
 
-    List<Integer> chapters;
+    private List<Integer> chapters;
+    private OnChapterListener onChapterListener;
 
-    public ChapterAdapter(List<Integer> chapters) {
+    public ChapterAdapter(List<Integer> chapters, OnChapterListener onChapterListener) {
         this.chapters = chapters;
+        this.onChapterListener = onChapterListener;
     }
 
     @NonNull
     @Override
     public ChapterHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_grid, parent, false);
-        return new ChapterHolder(view);
+        return new ChapterHolder(view, onChapterListener);
     }
 
     @Override
@@ -45,17 +47,18 @@ public class ChapterAdapter  extends RecyclerView.Adapter<ChapterAdapter.Chapter
     public class ChapterHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView txtChapter;
-        ChapterAdapter.OnChapterListener onChapterListener;
+        OnChapterListener onChapterListener;
 
-        public ChapterHolder(@NonNull View itemView) {
+        public ChapterHolder(@NonNull View itemView, OnChapterListener onChapterListener) {
             super(itemView);
             txtChapter = (TextView) itemView.findViewById(R.id.txtChapter);
             itemView.setOnClickListener(this);
+            this.onChapterListener = onChapterListener;
         }
 
         @Override
         public void onClick(View v) {
-
+            onChapterListener.onChapterClicked(getAdapterPosition());
         }
     }
 

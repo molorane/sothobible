@@ -98,7 +98,7 @@ public class ChapterFragment extends Fragment implements Communicator, ChapterAd
         ).thenAccept( s -> {
             chapters = generateList(s);
             Log.i(TAG, "Chapters " + chapters);
-            chaptersAdapter = new ChapterAdapter(chapters);
+            chaptersAdapter = new ChapterAdapter(chapters, this);
             chaptersRecyclerView.setAdapter(chaptersAdapter);
         });
 

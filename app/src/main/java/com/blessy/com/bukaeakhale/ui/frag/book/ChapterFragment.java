@@ -14,15 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.blessy.com.bukaeakhale.BookActivity;
 import com.blessy.com.bukaeakhale.R;
 import com.blessy.com.bukaeakhale.ui.adapter.ChapterAdapter;
 import com.blessy.com.bukaeakhale.ui.frag.book.communicator.Communicator;
 import com.blessy.com.bukaeakhale.ui.frag.book.communicator.IAdapter;
 import com.blessy.com.bukaeakhale.ui.main.service.BookService;
-import com.blessy.com.bukaeakhale.ui.main.service.ScriptureService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executors;
@@ -37,7 +34,7 @@ import static android.content.ContentValues.TAG;
  * create an instance of this fragment.
  */
 @RequiresApi(api = Build.VERSION_CODES.N)
-public class ChapterFragment extends Fragment implements Communicator {
+public class ChapterFragment extends Fragment implements Communicator, ChapterAdapter.OnChapterListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -96,7 +93,6 @@ public class ChapterFragment extends Fragment implements Communicator {
         super.onActivityCreated(savedInstanceState);
 
         chaptersRecyclerView = getActivity().findViewById(R.id.chaptersRecyclerView);
-        //chaptersView.setLayoutManager(new GridLayoutManager(getActivity(),5));
 
         CompletableFuture.supplyAsync(() -> BookService.getBookChapters(book)
         ).thenAccept( s -> {
@@ -106,7 +102,6 @@ public class ChapterFragment extends Fragment implements Communicator {
             chaptersRecyclerView.setAdapter(chaptersAdapter);
         });
 
-        Log.i(TAG, "Chapter fragment created..");
     }
 
     public List<Integer> generateList(int chapters){
@@ -138,5 +133,10 @@ public class ChapterFragment extends Fragment implements Communicator {
     @Override
     public void onReceive(Object o) {
         setNewChapters((String)o);
+    }
+
+    @Override
+    public void onChapterClicked(int position) {
+        Toast.makeText(getActivity(), "chapter clicked "+position ,Toast.LENGTH_SHORT).show();
     }
 }

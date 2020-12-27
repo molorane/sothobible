@@ -54,7 +54,6 @@ public class BookActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 Toast.makeText(getApplicationContext(), "Show verse tab = "+isChecked ,Toast.LENGTH_SHORT).show();
-                //sectionsPagerAdapter.destroyItem();
             }
 
         });

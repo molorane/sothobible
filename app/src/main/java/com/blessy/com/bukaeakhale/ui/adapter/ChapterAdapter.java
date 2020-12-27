@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,7 +13,7 @@ import com.blessy.com.bukaeakhale.R;
 
 import java.util.List;
 
-public class ChapterAdapter  extends RecyclerView.Adapter<ChapterHolder> {
+public class ChapterAdapter  extends RecyclerView.Adapter<ChapterAdapter.ChapterHolder> {
 
     List<Integer> chapters;
 
@@ -36,4 +37,26 @@ public class ChapterAdapter  extends RecyclerView.Adapter<ChapterHolder> {
     public int getItemCount() {
         return chapters.size();
     }
+
+    public interface OnChapterListener{
+        void onChapterClicked(int position);
+    }
+
+    public class ChapterHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        public TextView txtChapter;
+        ChapterAdapter.OnChapterListener onChapterListener;
+
+        public ChapterHolder(@NonNull View itemView) {
+            super(itemView);
+            txtChapter = (TextView) itemView.findViewById(R.id.txtChapter);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+
+        }
+    }
+
 }

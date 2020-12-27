@@ -25,6 +25,7 @@ import com.blessy.com.bukaeakhale.ui.main.service.ScriptureService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -97,7 +98,7 @@ public class ChapterFragment extends Fragment implements Communicator {
         chaptersRecyclerView = getActivity().findViewById(R.id.chaptersRecyclerView);
         //chaptersView.setLayoutManager(new GridLayoutManager(getActivity(),5));
 
-        CompletableFuture.supplyAsync(() -> BookService.countBookChapters(book)
+        CompletableFuture.supplyAsync(() -> BookService.getBookChapters(book)
         ).thenAccept( s -> {
             chapters = generateList(s);
             Log.i(TAG, "Chapters " + chapters);
@@ -121,14 +122,16 @@ public class ChapterFragment extends Fragment implements Communicator {
 
 
     public void setNewChapters(String book){
-        Toast.makeText(getContext(), "New book new chapters "+book, Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "New book "+book, Toast.LENGTH_LONG).show();
         chapters.clear();
-        CompletableFuture.supplyAsync(() -> BookService.countBookChapters(book)
-        ).thenAccept( s -> {
-            chapters = generateList(s);
-            Log.i(TAG, "Chapters " + chapters);
-            Toast.makeText(getContext(), "New book selected, new chapters "+chapters.size(), Toast.LENGTH_LONG).show();
-            chaptersAdapter.notifyDataSetChanged();
+
+        Executors.newSingleThreadExecutor().execute(new Runnable() {
+            @Override
+            public void run() {
+                chapters.addAll(generateList(BookService.getBookChapters(book)));
+                Log.i(TAG, "Chapters change " + chapters);
+                chaptersAdapter.notifyDataSetChanged();
+            }
         });
     }
 

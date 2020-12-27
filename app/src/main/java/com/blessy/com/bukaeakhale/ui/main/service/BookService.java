@@ -25,7 +25,7 @@ public class BookService {
         return ntBooks;
     }
 
-    public static int countBookChapters(String book){
+    public static int getBookChapters(String book){
            return MainActivity.appDatabase.bookRepository().getBookChapters(book);
     }
 }

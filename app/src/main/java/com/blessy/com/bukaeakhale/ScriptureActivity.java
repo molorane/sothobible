@@ -1,7 +1,9 @@
 package com.blessy.com.bukaeakhale;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,6 +12,9 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -58,6 +63,10 @@ public class ScriptureActivity extends AppCompatActivity implements View.OnClick
         selectedBook.setText(book);
         selectedChapter.setText(chapter);
 
+        Toolbar toolbar = findViewById(R.id.toolBar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false); // hide app name
+
         CompletableFuture.supplyAsync(() -> ScriptureService.readScriptureByBookAndChapter(book, Integer.parseInt(chapter))
         ).thenAccept( s -> {
             scriptures = s;
@@ -66,6 +75,7 @@ public class ScriptureActivity extends AppCompatActivity implements View.OnClick
             scriptureRecyclerView.setAdapter(scriptureAdapter);
         });
         saveCurrentScripture(book, chapter);
+
     }
 
 
@@ -88,4 +98,22 @@ public class ScriptureActivity extends AppCompatActivity implements View.OnClick
         Intent intent = new Intent(this, newIntent);
         startActivity(intent);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == R.id.about){
+            openActivity(AboutActivity.class);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

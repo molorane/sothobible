@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SothoBible">
-        <activity android:name=".Scripture"></activity>
+        <activity android:name=".ScriptureActivity"></activity>
         <activity android:name=".AboutActivity" />
         <activity
             android:name=".BookActivity"

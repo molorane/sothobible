@@ -1,5 +1,7 @@
 package com.blessy.com.bukaeakhale.ui.frag.book;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -16,6 +18,7 @@ import android.widget.Toast;
 
 import com.blessy.com.bukaeakhale.BookActivity;
 import com.blessy.com.bukaeakhale.R;
+import com.blessy.com.bukaeakhale.ScriptureActivity;
 import com.blessy.com.bukaeakhale.ui.adapter.ChapterAdapter;
 import com.blessy.com.bukaeakhale.ui.frag.book.communicator.Communicator;
 import com.blessy.com.bukaeakhale.ui.frag.book.communicator.IAdapter;
@@ -28,6 +31,11 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static android.content.ContentValues.TAG;
+
+import static android.content.Context.MODE_PRIVATE;
+import static com.blessy.com.bukaeakhale.MainActivity.BOOK;
+import static com.blessy.com.bukaeakhale.MainActivity.CHAPTER;
+import static com.blessy.com.bukaeakhale.MainActivity.SHARED_PREFS;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -120,7 +128,7 @@ public class ChapterFragment extends Fragment implements Communicator, ChapterAd
 
 
     public void setNewChapters(String book){
-        Toast.makeText(getContext(), "New book "+book, Toast.LENGTH_LONG).show();
+        this.book = book;
         chapters.clear();
 
         Executors.newSingleThreadExecutor().execute(new Runnable() {
@@ -142,5 +150,11 @@ public class ChapterFragment extends Fragment implements Communicator, ChapterAd
     public void onChapterClicked(int position) {
         if(bookActivity.showVerse())
             Toast.makeText(getActivity(), "chapter clicked "+position ,Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(getActivity(), ScriptureActivity.class);
+        intent.putExtra(BOOK, book);
+        intent.putExtra(CHAPTER, position + "");
+        getActivity().startActivity(intent);
     }
+
 }

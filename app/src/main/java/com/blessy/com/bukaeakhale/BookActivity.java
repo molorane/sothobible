@@ -69,7 +69,9 @@ public class BookActivity extends AppCompatActivity {
         title.setText("Libuka");
     }
 
-
+    public String getBook(){
+        return book;
+    }
 
     public boolean showVerse(){
         return onOffSwitch.isChecked();

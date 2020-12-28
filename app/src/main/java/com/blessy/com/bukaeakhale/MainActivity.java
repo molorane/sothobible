@@ -5,25 +5,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 
 import com.blessy.com.bukaeakhale.ui.main.AppDatabase;
-import com.blessy.com.bukaeakhale.ui.main.service.BookService;
-import com.google.android.material.snackbar.Snackbar;
-
-import java.util.concurrent.CompletableFuture;
-
-import static android.content.ContentValues.TAG;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private CardView btnAbout, btnRead, btnSettings;
     public static AppDatabase appDatabase;
+
+    public static final String SHARED_PREFS = "SHARED_PREFS";
+    public static final String BOOK = "com.blessy.com.bukaeakhale.book";
+    public static final String CHAPTER = "com.blessy.com.bukaeakhale.chapter";
+
+    private String book;
+    private String chapter;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -47,14 +46,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
     }
 
+    private void openScriptureActivity(Class newIntent){
+        Intent intent = new Intent(this, newIntent);
+        book = loadScripture(BOOK);
+        chapter = loadScripture(CHAPTER);
+        intent.putExtra(BOOK, book.isEmpty()? "Genese" : book);
+        intent.putExtra(CHAPTER, chapter.isEmpty()? "1" : chapter);
+        startActivity(intent);
+    }
+
     @Override
     public void onClick(View v) {
 
         switch(v.getId()){
             case R.id.btnRead:
-                openActivity(Scripture.class); break;
+                openScriptureActivity(ScriptureActivity.class); break;
             case R.id.btnAbout:
                 openActivity(AboutActivity.class); break;
         }
+    }
+
+    public String loadScripture(String key){
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        return sharedPreferences.getString(key,"");
     }
 }

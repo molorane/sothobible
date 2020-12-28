@@ -72,15 +72,14 @@
         android:orientation="vertical">
 
         <ScrollView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="50dp"
@@ -98,7 +97,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/saints"
-                    android:textSize="18sp"/>
+                    android:textSize="16sp"/>
 
                 <TextView
                     android:layout_marginTop="10dp"
@@ -107,7 +106,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/rate"
                     android:textStyle="normal"
-                    android:textSize="18sp"/>
+                    android:textSize="16sp"/>
 
                 <TextView
                     android:layout_marginTop="10dp"
@@ -116,7 +115,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/rate1"
                     android:textStyle="normal"
-                    android:textSize="18sp"/>
+                    android:textSize="16sp"/>
 
                 <TextView
                     android:layout_marginTop="10dp"
@@ -125,6 +124,23 @@
                     android:layout_height="wrap_content"
                     android:text="@string/about"
                     android:textStyle="normal"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/talkTome"
+                    android:textStyle="normal"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:layout_marginTop="30sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/supportedVersion"
+                    android:layout_marginStart="90dp"
                     android:textSize="18sp"/>
 
             </LinearLayout>

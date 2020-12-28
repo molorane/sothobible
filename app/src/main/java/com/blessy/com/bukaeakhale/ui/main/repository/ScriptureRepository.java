@@ -27,8 +27,8 @@ public interface ScriptureRepository {
     List<Scripture> readScriptureByBookAndChapter(String book, int chapter);
 
     @Query("SELECT * FROM scripture " +
-            "WHERE book_id = :book_id AND chapter = :chapter")
-    List<Scripture> readScriptureByBookIdAndChapter(int book_id, int chapter);
+            "WHERE book_id = :bookId AND chapter = :chapter")
+    List<Scripture> readScriptureByBookIdAndChapter(int bookId, int chapter);
 
 
     @Query("SELECT s.scripture FROM scripture s " +

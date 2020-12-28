@@ -35,7 +35,8 @@
                             android:layout_marginBottom="10dp"
                             android:layout_marginStart="10dp"
                             android:textStyle="bold"
-                            android:text="@string/ot" />
+                            android:text="@string/ot"
+                            android:textSize="16sp" />
 
                         <ListView
                             android:id="@+id/lvOT"
@@ -66,7 +67,8 @@
                             android:layout_marginBottom="10dp"
                             android:layout_marginStart="10dp"
                             android:textStyle="bold"
-                            android:text="@string/nt" />
+                            android:text="@string/nt"
+                            android:textSize="16sp"/>
 
                         <ListView
                             android:id="@+id/lvNT"

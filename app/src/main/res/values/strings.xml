@@ -16,8 +16,8 @@
     <string name="txtAbout">About Us</string>
 
 
-    <string name="ot">Testamente ea khale</string>
-    <string name="nt">Testamente e ncha</string>
+    <string name="ot"><u>Testamente ea khale</u></string>
+    <string name="nt"><u>Testamente e ncha</u></string>
 
     <string name="saints">Hello Saints!</string>
     <string name="rate">If this app is helpful to you, please take your time and rate it with maximum stars. Few minutes of your time!</string>

@@ -22,7 +22,7 @@ import static android.content.ContentValues.TAG;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private CardView btnAboutBible, btnReadBible, btnBook;
+    private CardView btnAbout, btnRead, btnSettings;
     public static AppDatabase appDatabase;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -31,11 +31,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnReadBible = (CardView) findViewById(R.id.btnReadBible);
-        btnAboutBible = (CardView) findViewById(R.id.btnAboutBible);
+        btnRead = (CardView) findViewById(R.id.btnRead);
+        btnAbout = (CardView) findViewById(R.id.btnAbout);
+        btnSettings = (CardView) findViewById(R.id.btnSettings);
 
-        btnReadBible.setOnClickListener(this);
-        btnAboutBible.setOnClickListener(this);
+        btnRead.setOnClickListener(this);
+        btnAbout.setOnClickListener(this);
+        btnSettings.setOnClickListener(this);
 
         appDatabase = AppDatabase.getInstance(getApplicationContext());
     }
@@ -49,9 +51,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
 
         switch(v.getId()){
-            case R.id.btnReadBible:
-                openActivity(BookActivity.class); break;
-            case R.id.btnAboutBible:
+            case R.id.btnRead:
+                openActivity(Scripture.class); break;
+            case R.id.btnAbout:
                 openActivity(AboutActivity.class); break;
         }
     }

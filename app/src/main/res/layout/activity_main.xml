@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/btnReadBible"
+                    android:id="@+id/btnRead"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:layout_width="160dp"
@@ -112,7 +112,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/btnSearchBible"
+                    android:id="@+id/btnSearch"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:layout_width="160dp"
@@ -170,7 +170,7 @@
                 android:layout_height="wrap_content">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/btnRateBible"
+                    android:id="@+id/btnRate"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:layout_width="160dp"
@@ -219,7 +219,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/btnSettingsBible"
+                    android:id="@+id/btnSettings"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:layout_width="160dp"
@@ -326,7 +326,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/btnAboutBible"
+                    android:id="@+id/btnAbout"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:layout_width="160dp"

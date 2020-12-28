@@ -33,7 +33,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter implements IAdapt
     private final Context mContext;
     private FragmentManager fragmentManager;
     public String book;
-    private List<Communicator> fragments;
+    public List<Communicator> fragments;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm, String book) {
         super(fm);
@@ -43,7 +43,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter implements IAdapt
         fragments = new ArrayList<>();
         fragments.add(BookFragment.newInstance(book,"", this));
         fragments.add(ChapterFragment.newInstance(book,"", this));
-        fragments.add(VerseFragment.newInstance(book,""));
     }
 
     @Override
@@ -62,8 +61,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter implements IAdapt
 
     @Override
     public int getCount() {
-        // Show 3 total pages.
-        return 3;
+        return 2;
     }
 
     @Override
@@ -72,11 +70,21 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter implements IAdapt
     }
 
     @Override
-    public void onSend(Object o, Fragment fragment) {
+    public void onSendBook(Object o, Fragment fragment) {
 
         for(Communicator c: fragments){
             if(fragment.equals(fragment)){
-                c.onReceive(o);
+                c.onReceiveBook(o);
+            }
+        }
+    }
+
+    @Override
+    public void onSendChapter(Object o, Fragment fragment) {
+
+        for(Communicator c: fragments){
+            if(fragment.equals(fragment)){
+                c.onReceiveChapter(o);
             }
         }
     }

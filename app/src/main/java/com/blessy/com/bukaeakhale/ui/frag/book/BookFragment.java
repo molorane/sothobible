@@ -106,6 +106,8 @@ public class BookFragment extends Fragment implements Communicator {
         lvOT = getActivity().findViewById(R.id.lvOT);
         lvNT = getActivity().findViewById(R.id.lvNT);
 
+        bookActivity.updateBook(bookActivity.getBook());
+
         CompletableFuture.supplyAsync(() -> BookService.getAllOldTestamentBooks()
         ).thenAccept( s -> {
             otBooks = s;
@@ -127,14 +129,14 @@ public class BookFragment extends Fragment implements Communicator {
         lvOT.setOnItemClickListener((parent, view, position, id) -> {
             bookParam = ((TextView)view).getText().toString();
             bookActivity.updateBook(bookParam);
-            iAdapter.onSend(bookParam, BookFragment.this);
+            iAdapter.onSendBook(bookParam, BookFragment.this);
             viewPager.setCurrentItem(viewPager.getCurrentItem()+1); // Increment ViewPager's position
         });
 
         lvNT.setOnItemClickListener((parent, view, position, id) -> {
             bookParam = ((TextView)view).getText().toString();
             bookActivity.updateBook(bookParam);
-            iAdapter.onSend(bookParam, BookFragment.this);
+            iAdapter.onSendBook(bookParam, BookFragment.this);
             viewPager.setCurrentItem(viewPager.getCurrentItem()+1); // Increment ViewPager's position
         });
 
@@ -146,8 +148,4 @@ public class BookFragment extends Fragment implements Communicator {
         return inflater.inflate(R.layout.fragment_book, container, false);
     }
 
-    @Override
-    public void onReceive(Object o) {
-
-    }
 }

@@ -15,8 +15,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.blessy.com.bukaeakhale.ui.adapter.ChapterAdapter;
 import com.blessy.com.bukaeakhale.ui.adapter.ScriptureAdapter;
@@ -89,7 +91,10 @@ public class ScriptureActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.book){
-            openActivity(BookActivity.class);
+            Intent intent = new Intent(this, BookActivity.class);
+            intent.putExtra(BOOK, book);
+            intent.putExtra(CHAPTER, chapter + "");
+            startActivity(intent);
         }
     }
 
@@ -116,4 +121,26 @@ public class ScriptureActivity extends AppCompatActivity implements View.OnClick
         return super.onOptionsItemSelected(item);
     }
 
+    float x1, x2, y1, y2;
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+
+        switch(event.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                x1 = event.getX();
+                y1 = event.getY();break;
+            case MotionEvent.ACTION_UP:
+                x2 = event.getX();
+                x2 = event.getY();
+                if(x1 < x2){
+                    Toast.makeText(this,"Swipe left", Toast.LENGTH_SHORT).show();
+                }else if(x1 > x2){
+                    Toast.makeText(this,"Swipe right", Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
+
+        return super.onTouchEvent(event);
+    }
 }

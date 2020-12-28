@@ -35,23 +35,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center">
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="40sp"
-                    android:text="@string/tab_verse" />
-
-                <Switch
-                    android:id="@+id/swVerse"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:switchMinWidth="56dp"
-                    android:layout_weight="1"/>
-            </LinearLayout>
+                android:gravity="center"/>
 
 
 

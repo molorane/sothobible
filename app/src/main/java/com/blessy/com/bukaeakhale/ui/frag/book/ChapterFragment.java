@@ -22,6 +22,7 @@ import com.blessy.com.bukaeakhale.ScriptureActivity;
 import com.blessy.com.bukaeakhale.ui.adapter.ChapterAdapter;
 import com.blessy.com.bukaeakhale.ui.frag.book.communicator.Communicator;
 import com.blessy.com.bukaeakhale.ui.frag.book.communicator.IAdapter;
+import com.blessy.com.bukaeakhale.ui.main.AppUtils;
 import com.blessy.com.bukaeakhale.ui.main.service.BookService;
 
 import java.util.List;
@@ -42,6 +43,8 @@ import static com.blessy.com.bukaeakhale.MainActivity.SHARED_PREFS;
  * Use the {@link ChapterFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+
+
 @RequiresApi(api = Build.VERSION_CODES.N)
 public class ChapterFragment extends Fragment implements Communicator, ChapterAdapter.OnChapterListener {
 
@@ -107,16 +110,12 @@ public class ChapterFragment extends Fragment implements Communicator, ChapterAd
 
         CompletableFuture.supplyAsync(() -> BookService.getBookChapters(book)
         ).thenAccept( s -> {
-            chapters = generateList(s);
+            chapters = AppUtils.generateList(s);
             Log.i(TAG, "Chapters " + chapters);
             chaptersAdapter = new ChapterAdapter(chapters, this);
             chaptersRecyclerView.setAdapter(chaptersAdapter);
         });
 
-    }
-
-    public List<Integer> generateList(int chapters){
-        return IntStream.rangeClosed(1, chapters).mapToObj(Integer::valueOf).collect(Collectors.toList());
     }
 
     @Override
@@ -134,7 +133,7 @@ public class ChapterFragment extends Fragment implements Communicator, ChapterAd
         Executors.newSingleThreadExecutor().execute(new Runnable() {
             @Override
             public void run() {
-                chapters.addAll(generateList(BookService.getBookChapters(book)));
+                chapters.addAll(AppUtils.generateList(BookService.getBookChapters(book)));
                 Log.i(TAG, "Chapters change " + chapters);
                 chaptersAdapter.notifyDataSetChanged();
             }
@@ -142,15 +141,12 @@ public class ChapterFragment extends Fragment implements Communicator, ChapterAd
     }
 
     @Override
-    public void onReceive(Object o) {
+    public void onReceiveBook(Object o) {
         setNewChapters((String)o);
     }
 
     @Override
     public void onChapterClicked(int position) {
-        if(bookActivity.showVerse())
-            Toast.makeText(getActivity(), "chapter clicked "+position ,Toast.LENGTH_SHORT).show();
-
         Intent intent = new Intent(getActivity(), ScriptureActivity.class);
         intent.putExtra(BOOK, book);
         intent.putExtra(CHAPTER, position + "");

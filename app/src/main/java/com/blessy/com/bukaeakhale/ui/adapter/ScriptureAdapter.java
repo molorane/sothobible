@@ -3,12 +3,15 @@ package com.blessy.com.bukaeakhale.ui.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.blessy.com.bukaeakhale.R;
+import com.blessy.com.bukaeakhale.ScriptureActivity;
 import com.blessy.com.bukaeakhale.ui.main.entity.Scripture;
 
 import java.util.List;
@@ -30,7 +33,6 @@ public class ScriptureAdapter extends RecyclerView.Adapter<ScriptureAdapter.Scri
 
     @Override
     public void onBindViewHolder(@NonNull ScriptureHolder holder, int position) {
-
         holder.txtVerse.setText(String.valueOf(chapters.get(position).verse));
         holder.txtScripture.setText(String.valueOf(chapters.get(position).scripture));
     }
@@ -48,6 +50,7 @@ public class ScriptureAdapter extends RecyclerView.Adapter<ScriptureAdapter.Scri
 
         public TextView txtVerse;
         public TextView txtScripture;
+
 
         public ScriptureHolder(@NonNull View itemView) {
             super(itemView);

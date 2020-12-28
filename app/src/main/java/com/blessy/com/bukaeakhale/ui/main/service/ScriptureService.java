@@ -13,4 +13,7 @@ public class ScriptureService {
         return MainActivity.appDatabase.scriptureRepository().readScriptureByBookAndChapter(book, chapter);
     }
 
+    public static int getChapterVerses(String book, int chapter){
+        return MainActivity.appDatabase.scriptureRepository().getChapterVerses(book, chapter);
+    }
 }

@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
@@ -27,42 +28,46 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static android.content.ContentValues.TAG;
+
 
 @RequiresApi(api = Build.VERSION_CODES.N)
 public class BookActivity extends AppCompatActivity {
 
-    Switch onOffSwitch;
     TextView title;
     private ViewPager viewPager;
     private SectionsPagerAdapter sectionsPagerAdapter;
     public static String book = "Genese";
+    public static String chapter = "1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book);
+
+        book = getIntent().getStringExtra(MainActivity.BOOK);
+        chapter = getIntent().getStringExtra(MainActivity.CHAPTER);
+
         sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), book);
         viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
+        Log.i(TAG, "Book from ScriptureActivity " + book);
+
         title = (TextView) findViewById(R.id.title);
-        onOffSwitch = (Switch)  findViewById(R.id.swVerse);
-        onOffSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Toast.makeText(getApplicationContext(), "Show verse tab = "+isChecked ,Toast.LENGTH_SHORT).show();
-            }
-
-        });
     }
 
     public void updateBook(String book) {
         this.book = book;
         sectionsPagerAdapter.book = book;
         title.setText(book);
+    }
+
+    public void updateChapter(int chapter) {
+        this.chapter = chapter+"";
     }
 
     public void changeToLibuka(){
@@ -73,7 +78,7 @@ public class BookActivity extends AppCompatActivity {
         return book;
     }
 
-    public boolean showVerse(){
-        return onOffSwitch.isChecked();
+    public String getChapter(){
+        return chapter;
     }
 }

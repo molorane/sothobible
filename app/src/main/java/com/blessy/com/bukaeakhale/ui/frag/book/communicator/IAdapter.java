@@ -4,5 +4,6 @@ import androidx.fragment.app.Fragment;
 
 public interface IAdapter {
 
-    void onSend(Object o, Fragment fragment);
+    default void onSendBook(Object o, Fragment fragment){}
+    default void onSendChapter(Object o, Fragment fragment){}
 }

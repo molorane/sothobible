@@ -11,6 +11,13 @@ public class BookService {
 
     private BookService(){}
 
+    public static List<String> getAllBooks(){
+        if(otBooks == null){
+            otBooks = MainActivity.appDatabase.bookRepository().findAllBooks();
+        }
+        return otBooks;
+    }
+
     public static List<String> getAllOldTestamentBooks(){
         if(otBooks == null){
             otBooks = MainActivity.appDatabase.bookRepository().findAllOldTestamentBooks();

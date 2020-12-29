@@ -118,6 +118,15 @@ public class ScriptureActivity extends AppCompatActivity implements View.OnClick
         if(id == R.id.about){
             openActivity(AboutActivity.class);
         }
+        if(id == R.id.home){
+            openActivity(MainActivity.class);
+        }
+        if(id == R.id.search){
+            openActivity(Search.class);
+        }
+        if(id == R.id.feedback){
+            openActivity(FeedBack.class);
+        }
         return super.onOptionsItemSelected(item);
     }
 

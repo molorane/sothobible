@@ -38,4 +38,24 @@
     <string name="sred">Scripture in red</string>
     <string name="vOne">1</string>
     <string name="supportedVersion">Android 4.4+</string>
+
+
+    <!-- Contact Form -->
+    <string name="senderName">Name</string>
+    <string name="senderEmail">Email</string>
+    <string name="enterName">Enter name</string>
+    <string name="enterEmail">Enter email</string>
+    <string name="senderFeedback">Feedback</string>
+    <string name="enterFeedback">Enter feedback</string>
+    <string name="send">Send</string>
+    <string name="txtBatlaLengolo">Batla Lengolo</string>
+    <string name="searchText">Batla</string>
+    <string name="enterSearch">Example "Jesu a lla"</string>
+    <string name="matcWholeText">Match whole words only</string>
+    <string name="searchWholeBible">Search entire Bible</string>
+    <string name="limitSearch">Limit search to</string>
+    <string name="SearchFrom">Search from</string>
+    <string name="txtFrom">From</string>
+    <string name="txtTo">To</string>
+    <string name="txtHome">Home</string>
 </resources>

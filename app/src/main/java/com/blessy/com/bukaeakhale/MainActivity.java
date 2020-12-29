@@ -14,7 +14,7 @@ import com.blessy.com.bukaeakhale.ui.main.AppDatabase;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private CardView btnAbout, btnRead, btnSettings;
+    private CardView btnAbout, btnRead, btnSettings, btnFeedBack, btnSearch;
     public static AppDatabase appDatabase;
 
     public static final String SHARED_PREFS = "SHARED_PREFS";
@@ -33,10 +33,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnRead = (CardView) findViewById(R.id.btnRead);
         btnAbout = (CardView) findViewById(R.id.btnAbout);
         btnSettings = (CardView) findViewById(R.id.btnSettings);
+        btnFeedBack = (CardView) findViewById(R.id.btnFeedBack);
+        btnSearch = (CardView) findViewById(R.id.btnSearch);
+
+
 
         btnRead.setOnClickListener(this);
         btnAbout.setOnClickListener(this);
         btnSettings.setOnClickListener(this);
+        btnFeedBack.setOnClickListener(this);
+        btnSearch.setOnClickListener(this);
 
         appDatabase = AppDatabase.getInstance(getApplicationContext());
     }
@@ -64,6 +70,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 openScriptureActivity(ScriptureActivity.class); break;
             case R.id.btnAbout:
                 openActivity(AboutActivity.class); break;
+            case R.id.btnFeedBack:
+                openActivity(FeedBack.class); break;
+            case R.id.btnSearch:
+                openActivity(Search.class); break;
         }
     }
 

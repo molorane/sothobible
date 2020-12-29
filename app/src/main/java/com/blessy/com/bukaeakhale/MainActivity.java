@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void openScriptureActivity(Class newIntent){
+        appDatabase = AppDatabase.getInstance(getApplicationContext());
         Intent intent = new Intent(this, newIntent);
         book = loadScripture(BOOK);
         chapter = loadScripture(CHAPTER);

@@ -12,8 +12,6 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-
-        <item name="android:itemBackground">#000000</item>
     </style>
 
     <style name="Theme.SothoBible.NoActionBar">
@@ -21,7 +19,13 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="MainActionBar.Popup" parent="ThemeOverlay.AppCompat.Light">
+
+    </style>
+
     <style name="Theme.SothoBible.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="Theme.SothoBible.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.SothoBible.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textColor">@color/black</item>
+    </style>
 </resources>

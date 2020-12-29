@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:gravity="center"
-            android:text="@string/txtSothoBible"
+            android:text="@string/txtSotho"
             android:textColor="@color/pinkDark"
             android:textSize="20sp" />
 

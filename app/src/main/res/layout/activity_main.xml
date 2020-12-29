@@ -39,7 +39,7 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="35dp"
             android:gravity="center_horizontal"
-            android:text="@string/txtSothoBible"
+            android:text="@string/txtSotho"
             android:textColor="@color/white"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -84,7 +84,7 @@
                             android:background="@drawable/circle_background_pink"
                             android:src="@drawable/ic_baseline_menu_book_24"
                             android:padding="10dp"
-                            android:contentDescription="@string/txtReadBible">
+                            android:contentDescription="@string/txtRead">
 
                         </ImageView>
 
@@ -94,7 +94,7 @@
                             android:textStyle="bold"
                             android:layout_margin="10dp"
                             android:gravity="center"
-                            android:text="@string/txtReadBible" />
+                            android:text="@string/txtRead" />
 
                         <View
                             android:layout_width="match_parent"
@@ -105,7 +105,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="@string/txtBalaBible"
+                            android:text="@string/txtBala"
                             android:padding="5dp" />
                     </LinearLayout>
 
@@ -133,7 +133,7 @@
                             android:background="@drawable/circle_background_purple"
                             android:src="@drawable/ic_baseline_search_24"
                             android:padding="10dp"
-                            android:contentDescription="@string/txtSearchBible">
+                            android:contentDescription="@string/txtSearch">
 
                         </ImageView>
 
@@ -143,7 +143,7 @@
                             android:textStyle="bold"
                             android:layout_margin="10dp"
                             android:gravity="center"
-                            android:text="@string/txtSearchBible" />
+                            android:text="@string/txtSearch" />
 
                         <View
                             android:layout_width="match_parent"
@@ -154,7 +154,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="@string/txtBatlaBible"
+                            android:text="@string/txtBatla"
                             android:padding="5dp" />
                     </LinearLayout>
 
@@ -191,7 +191,7 @@
                             android:background="@drawable/circle_background_green"
                             android:src="@drawable/ic_baseline_star_half_24"
                             android:padding="10dp"
-                            android:contentDescription="@string/txtRateBible">
+                            android:contentDescription="@string/txtRate">
 
                         </ImageView>
 
@@ -201,7 +201,7 @@
                             android:textStyle="bold"
                             android:layout_margin="10dp"
                             android:gravity="center"
-                            android:text="@string/txtRateBible" />
+                            android:text="@string/txtRate" />
 
                         <View
                             android:layout_width="match_parent"
@@ -212,7 +212,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="@string/txtHlahlobaBible"
+                            android:text="@string/txtHlahloba"
                             android:padding="5dp" />
                     </LinearLayout>
 
@@ -240,7 +240,7 @@
                             android:background="@drawable/circle_background_yellow"
                             android:src="@drawable/ic_baseline_settings_24"
                             android:padding="10dp"
-                            android:contentDescription="@string/txtSettingsBible">
+                            android:contentDescription="@string/txtSettings">
 
                         </ImageView>
 
@@ -250,7 +250,7 @@
                             android:textStyle="bold"
                             android:layout_margin="10dp"
                             android:gravity="center"
-                            android:text="@string/txtSettingsBible" />
+                            android:text="@string/txtSettings" />
 
                         <View
                             android:layout_width="match_parent"
@@ -261,7 +261,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="@string/txtLisettingBible"
+                            android:text="@string/txtLisetting"
                             android:padding="5dp" />
                     </LinearLayout>
 

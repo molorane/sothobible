@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:title="@string/txtSettingsBible"
+        android:title="@string/txtSettings"
         android:icon="@drawable/ic_baseline_arrow_back_24"
         android:id="@+id/settings"></item>
 
     <item
-        android:title="@string/txtSearchBible"
+        android:title="@string/txtSearch"
         android:icon="@drawable/search"
         android:id="@+id/search"></item>
 
@@ -18,7 +18,7 @@
         android:id="@+id/about"></item>
 
     <item
-        android:title="@string/txtRateBible"
+        android:title="@string/txtRate"
         android:icon="@drawable/ic_baseline_star_half_24"
         android:id="@+id/rate"></item>
 

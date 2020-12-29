@@ -1,18 +1,18 @@
 <resources>
     <string name="app_name">Buka ea khale</string>
-    <string name="txtSothoBible">Sesotho Bible</string>
-    <string name="txtReadBible">Read Bible</string>
-    <string name="txtBalaBible">Bala Bible</string>
-    <string name="txtSearchBible">Search Scripture</string>
-    <string name="txtBatlaBible">Batla lengolo</string>
-    <string name="txtRateBible">Rate App</string>
-    <string name="txtHlahlobaBible">Hlahloba app ena</string>
-    <string name="txtSettingsBible">Settings</string>
-    <string name="txtLisettingBible">Chencha Lisetting</string>
+    <string name="txtSotho">Sesotho Bible</string>
+    <string name="txtRead">Read Bible</string>
+    <string name="txtBala">Bala Bible</string>
+    <string name="txtSearch">Search Scripture</string>
+    <string name="txtBatla">Batla lengolo</string>
+    <string name="txtRate">Rate App</string>
+    <string name="txtHlahloba">Hlahloba App</string>
+    <string name="txtSettings">Settings</string>
+    <string name="txtLisetting">Lisetting</string>
     <string name="txtFeedBack">Contact Us</string>
     <string name="txtBuaLerona">Bua le rona</string>
     <string name="txtAboutApp">About App</string>
-    <string name="txtTsaApp">Ka app ena</string>
+    <string name="txtTsaApp">Ka App</string>
     <string name="txtAbout">About Us</string>
 
     <string name="ot"><u>Testamente ea khale</u></string>

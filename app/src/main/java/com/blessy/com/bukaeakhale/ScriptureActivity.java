@@ -43,6 +43,7 @@ public class ScriptureActivity extends AppCompatActivity implements View.OnClick
     private String chapter;
 
     private List<Scripture> scriptures;
+    public static final String PAGE = "fragment";
 
     private RecyclerView scriptureRecyclerView;
     private ScriptureAdapter scriptureAdapter;
@@ -57,6 +58,7 @@ public class ScriptureActivity extends AppCompatActivity implements View.OnClick
         selectedChapter = (TextView) findViewById(R.id.chapter);
 
         selectedBook.setOnClickListener(this);
+        selectedChapter.setOnClickListener(this);
         scriptureRecyclerView = findViewById(R.id.scripturesRecyclerView);
 
         book = getIntent().getStringExtra(MainActivity.BOOK);
@@ -94,6 +96,13 @@ public class ScriptureActivity extends AppCompatActivity implements View.OnClick
             Intent intent = new Intent(this, BookActivity.class);
             intent.putExtra(BOOK, book);
             intent.putExtra(CHAPTER, chapter + "");
+            intent.putExtra(PAGE, "fbook");
+            startActivity(intent);
+        }else if(v.getId() == R.id.chapter){
+            Intent intent = new Intent(this, BookActivity.class);
+            intent.putExtra(BOOK, book);
+            intent.putExtra(CHAPTER, chapter + "");
+            intent.putExtra(PAGE, "fchapter");
             startActivity(intent);
         }
     }

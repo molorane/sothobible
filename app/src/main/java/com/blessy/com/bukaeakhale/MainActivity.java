@@ -8,18 +8,21 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.blessy.com.bukaeakhale.ui.main.AppDatabase;
+
+import static android.content.ContentValues.TAG;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private CardView btnAbout, btnRead, btnSettings, btnFeedBack, btnSearch;
     public static AppDatabase appDatabase;
 
-    public static final String SHARED_PREFS = "SHARED_PREFS";
-    public static final String BOOK = "com.blessy.com.bukaeakhale.book";
-    public static final String CHAPTER = "com.blessy.com.bukaeakhale.chapter";
+    public static final String SHARED_PREFS = "myprefs";
+    public static final String BOOK = "book";
+    public static final String CHAPTER = "chapter";
 
     private String book;
     private String chapter;
@@ -36,8 +39,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnFeedBack = (CardView) findViewById(R.id.btnFeedBack);
         btnSearch = (CardView) findViewById(R.id.btnSearch);
 
-
-
         btnRead.setOnClickListener(this);
         btnAbout.setOnClickListener(this);
         btnSettings.setOnClickListener(this);
@@ -53,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void openScriptureActivity(Class newIntent){
-        appDatabase = AppDatabase.getInstance(getApplicationContext());
         Intent intent = new Intent(this, newIntent);
         book = loadScripture(BOOK);
         chapter = loadScripture(CHAPTER);

@@ -61,6 +61,7 @@ public class ScriptureActivity extends AppCompatActivity implements View.OnClick
 
         book = getIntent().getStringExtra(MainActivity.BOOK);
         chapter = getIntent().getStringExtra(MainActivity.CHAPTER);
+        saveCurrentScripture(book, chapter);
 
         selectedBook.setText(book);
         selectedChapter.setText(chapter);
@@ -76,8 +77,6 @@ public class ScriptureActivity extends AppCompatActivity implements View.OnClick
             scriptureAdapter = new ScriptureAdapter(scriptures);
             scriptureRecyclerView.setAdapter(scriptureAdapter);
         });
-        saveCurrentScripture(book, chapter);
-
     }
 
 
@@ -86,6 +85,7 @@ public class ScriptureActivity extends AppCompatActivity implements View.OnClick
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(BOOK, book);
         editor.putString(CHAPTER, chapter);
+        editor.apply();
     }
 
     @Override

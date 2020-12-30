@@ -34,12 +34,12 @@ import static android.content.ContentValues.TAG;
 @RequiresApi(api = Build.VERSION_CODES.N)
 public class BookActivity extends AppCompatActivity {
 
-    TextView titleBook;
+    TextView title;
     private ViewPager viewPager;
     private SectionsPagerAdapter sectionsPagerAdapter;
     public static String book = "Genese";
     public static String chapter = "1";
-    public static String page;
+    private String page;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +56,7 @@ public class BookActivity extends AppCompatActivity {
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
-        titleBook = (TextView) findViewById(R.id.title);
+        title = (TextView) findViewById(R.id.title);
 
         if(page.equals("fchapter")){
             viewPager.setCurrentItem(viewPager.getCurrentItem()+1); // Increment ViewPager's position
@@ -67,7 +67,7 @@ public class BookActivity extends AppCompatActivity {
     public void updateBook(String book) {
         this.book = book;
         sectionsPagerAdapter.book = book;
-        titleBook.setText(book);
+        title.setText(book);
     }
 
     public void updateChapter(int chapter) {
@@ -75,7 +75,7 @@ public class BookActivity extends AppCompatActivity {
     }
 
     public void changeToLibuka(){
-        titleBook.setText("Libuka");
+        title.setText("Libuka");
     }
 
     public String getBook(){

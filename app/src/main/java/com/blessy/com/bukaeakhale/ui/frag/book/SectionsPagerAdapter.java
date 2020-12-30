@@ -81,7 +81,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter implements IAdapt
 
     @Override
     public void onSendChapter(Object o, Fragment fragment) {
-
         for(Communicator c: fragments){
             if(fragment.equals(fragment)){
                 c.onReceiveChapter(o);
